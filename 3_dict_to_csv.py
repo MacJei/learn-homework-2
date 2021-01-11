@@ -15,7 +15,22 @@ def main():
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    pass
+    import csv
+
+    content = [
+        {'name': 'Masha', 'age': 25, 'job': 'Scientist'},
+        {'name': 'Vasya', 'age': 8, 'job': 'Programmer'},
+        {'name': 'Eduard', 'age': 48, 'job': 'Big boss'},
+        {'name': 'Lena', 'age': 18, 'job': 'Doctor'}
+    ]
+
+    with open('export.csv', 'w', encoding='utf-8') as f:
+        fields = ['name', 'age', 'job']
+        writer = csv.DictWriter(f, fields, delimiter=';')
+        writer.writeheader()
+        for line in content:
+            writer.writerow(line)
+
 
 if __name__ == "__main__":
     main()
